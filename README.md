@@ -42,3 +42,75 @@ MakineProje/
 ├── venv/
 ├── README.md
 └── requirements.txt
+
+
+# B C D E SINIFLARI kİM ARASINDA DAĞITILCAKSA ONA GÖRE ANLAŞIP KLASÖR YAPISI BU ŞEKİLDE OLACAKTIR 
+MakineProje/
+│
+├── data/
+│   ├── raw/
+│   │   ├── stuttering/
+│   │   ├── member_b/
+│   │   ├── member_c/
+│   │   ├── member_d/
+│   │   └── member_e/
+│   │
+│   ├── interim/
+│   │   ├── wav_16k/
+│   │   │   ├── stuttering/
+│   │   │   ├── member_b/
+│   │   │   ├── member_c/
+│   │   │   ├── member_d/
+│   │   │   └── member_e/
+│   │   │
+│   │   ├── trimmed/
+│   │   │   ├── stuttering/
+│   │   │   ├── member_b/
+│   │   │   ├── member_c/
+│   │   │   ├── member_d/
+│   │   │   └── member_e/
+│   │   │
+│   │   └── segmented/
+│   │       ├── stuttering/
+│   │       ├── member_b/
+│   │       ├── member_c/
+│   │       ├── member_d/
+│   │       └── member_e/
+│   │
+│   ├── processed/
+│   │   ├── train_set/
+│   │   │   ├── stuttering/
+│   │   │   ├── member_b/
+│   │   │   ├── member_c/
+│   │   │   ├── member_d/
+│   │   │   └── member_e/
+│   │   │
+│   │   ├── validation_set/
+│   │   │   ├── stuttering/
+│   │   │   ├── member_b/
+│   │   │   ├── member_c/
+│   │   │   ├── member_d/
+│   │   │   └── member_e/
+│   │   │
+│   │   └── test_set/
+│   │       ├── stuttering/
+│   │       ├── member_b/
+│   │       ├── member_c/
+│   │       ├── member_d/
+│   │       └── member_e/
+│   │
+│   └── metadata/
+│       ├── stuttering_urls.txt
+│       ├── member_b_urls.txt
+│       ├── member_c_urls.txt
+│       ├── member_d_urls.txt
+│       ├── member_e_urls.txt
+│       ├── raw_metadata.csv
+│       ├── segments_metadata.csv
+│       └── split_metadata.csv
+│
+├── scripts/
+├── notebooks/
+├── reports/
+├── README.md
+└── requirements.txt
