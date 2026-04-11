@@ -1,12 +1,25 @@
+# Python
 venv/
-.venv/
 __pycache__/
 *.pyc
+
+# Data klasörleri (ÇOK ÖNEMLİ)
+data/raw/
+data/interim/
+data/processed/
+
+# Büyük dosyalar
+*.wav
+*.mp3
+*.m4a
+*.webm
+
+# Notebook cache
 .ipynb_checkpoints/
 
-data/raw/*
-data/interim/*
-data/processed/*
+# OS
+.DS_Store
+Thumbs.db
 
 !data/raw/.gitkeep
 !data/interim/.gitkeep

@@ -85,13 +85,7 @@ MakineProje/
 │   │   │   ├── member_d/
 │   │   │   └── member_e/
 │   │   │
-│   │   ├── validation_set/
-│   │   │   ├── stuttering/
-│   │   │   ├── member_b/
-│   │   │   ├── member_c/
-│   │   │   ├── member_d/
-│   │   │   └── member_e/
-│   │   │
+│   │   │   
 │   │   └── test_set/
 │   │       ├── stuttering/
 │   │       ├── member_b/
