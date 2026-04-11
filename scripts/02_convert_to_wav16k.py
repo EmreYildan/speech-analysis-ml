@@ -38,6 +38,9 @@ def main():
 
     for file_path in files:
         output_path = OUTPUT_DIR / f"{file_path.stem}.wav"
+        if output_path.exists():
+            print(f"[SKIP] Already converted: {output_path.name}")
+            continue
         convert_file(file_path, output_path)
 
 if __name__ == "__main__":

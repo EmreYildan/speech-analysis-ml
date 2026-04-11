@@ -24,13 +24,30 @@ def extract_video_id(filename: str) -> str:
     return filename.split("_seg_")[0]
 
 
+def clear_directory(folder: Path):
+    for f in folder.glob("*.wav"):
+        f.unlink()
+
+
 def main():
+    print(f"[INFO] Input dir: {INPUT_DIR}")
+    print(f"[INFO] Train dir: {TRAIN_DIR}")
+    print(f"[INFO] Test dir: {TEST_DIR}")
+
+    if not INPUT_DIR.exists():
+        print("[ERROR] Input directory does not exist.")
+        return
+
     files = list(INPUT_DIR.glob("*.wav"))
     print(f"[INFO] Found {len(files)} segment files.")
 
     if not files:
         print("[WARNING] No segment files found.")
         return
+
+    # Her çalıştırmada train/test klasörlerini temizle
+    clear_directory(TRAIN_DIR)
+    clear_directory(TEST_DIR)
 
     video_to_files = defaultdict(list)
     for f in files:
@@ -63,8 +80,8 @@ def main():
             shutil.copy2(f, TEST_DIR / f.name)
             test_count += 1
 
-    print(f"[OK] Train segments: {train_count}")
-    print(f"[OK] Test segments: {test_count}")
+    print(f"[OK] Train segments copied: {train_count}")
+    print(f"[OK] Test segments copied: {test_count}")
 
     print("\n[INFO] Test video IDs:")
     for vid in sorted(test_video_ids):

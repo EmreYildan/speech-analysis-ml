@@ -60,6 +60,9 @@ def main():
 
     for f in files:
         out_path = OUTPUT_DIR / f.name
+        if out_path.exists():
+            print(f"[SKIP] Already trimmed: {f.name}")
+            continue
         trim_audio(f, out_path)
 
 if __name__ == "__main__":

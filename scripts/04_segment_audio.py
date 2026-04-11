@@ -8,11 +8,19 @@ OUTPUT_DIR = PROJECT_ROOT / "data" / "interim" / "segmented" / "stuttering"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-SEGMENT_DURATION_MS = 3000   # 3 saniye
-MIN_SEGMENT_MS = 1500        # 1.5 saniyeden kısa parçaları alma
+SEGMENT_DURATION_MS = 3000
+MIN_SEGMENT_MS = 1500
+
+
+def clear_existing_segments(input_path: Path):
+    for f in OUTPUT_DIR.glob(f"{input_path.stem}_seg_*.wav"):
+        f.unlink()
+
 
 def segment_audio(input_path: Path):
     try:
+        clear_existing_segments(input_path)
+
         audio = AudioSegment.from_wav(input_path)
         total_length = len(audio)
 
@@ -26,7 +34,6 @@ def segment_audio(input_path: Path):
 
             out_name = f"{input_path.stem}_seg_{count:03d}.wav"
             out_path = OUTPUT_DIR / out_name
-
             segment.export(out_path, format="wav")
             count += 1
 
@@ -34,6 +41,7 @@ def segment_audio(input_path: Path):
 
     except Exception as e:
         print(f"[ERROR] {input_path.name}: {e}")
+
 
 def main():
     print(f"[INFO] Input dir: {INPUT_DIR}")
@@ -52,6 +60,7 @@ def main():
 
     for f in files:
         segment_audio(f)
+
 
 if __name__ == "__main__":
     main()
