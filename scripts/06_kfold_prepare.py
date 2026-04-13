@@ -4,6 +4,8 @@ from sklearn.model_selection import StratifiedGroupKFold
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+# Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
+
 TRAIN_DIR = PROJECT_ROOT / "data" / "processed" / "train_set"
 OUTPUT_PATH = PROJECT_ROOT / "data" / "metadata" / "kfold_split.csv"
 

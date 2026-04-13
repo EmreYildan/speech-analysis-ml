@@ -2,6 +2,8 @@ from pathlib import Path
 from pydub import AudioSegment
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
+
 INPUT_DIR = PROJECT_ROOT / "data" / "raw" / "stuttering"
 OUTPUT_DIR = PROJECT_ROOT / "data" / "interim" / "wav_16k" / "stuttering"
 

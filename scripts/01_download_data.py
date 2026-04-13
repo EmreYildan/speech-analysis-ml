@@ -3,6 +3,9 @@ import subprocess
 from urllib.parse import urlparse, parse_qs
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+# Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
+
 URL_FILE = PROJECT_ROOT / "data" / "metadata" / "stuttering_urls.txt"
 OUTPUT_DIR = PROJECT_ROOT / "data" / "raw" / "stuttering"
 
