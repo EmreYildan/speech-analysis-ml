@@ -7,9 +7,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 # Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
 
-INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "segmented" / "stuttering"
-TRAIN_DIR = PROJECT_ROOT / "data" / "processed" / "train_set" / "stuttering"
-TEST_DIR = PROJECT_ROOT / "data" / "processed" / "test_set" / "stuttering"
+INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "segmented" / "spasmodic_dysphonia"
+TRAIN_DIR = PROJECT_ROOT / "data" / "processed" / "train_set" / "spasmodic_dysphonia"
+TEST_DIR = PROJECT_ROOT / "data" / "processed" / "test_set" / "spasmodic_dysphonia"
 
 TRAIN_DIR.mkdir(parents=True, exist_ok=True)
 TEST_DIR.mkdir(parents=True, exist_ok=True)
