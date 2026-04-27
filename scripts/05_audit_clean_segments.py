@@ -1,3 +1,17 @@
+"""
+
+python scripts/05_audit_clean_segments.py 
+--input data/interim/segmented/HASTALIK_ADI 
+--report data/metadata/HASTALIK_ADI_segment_quality_report_relaxed.csv 
+--copy --clean-dir data/interim/segmented_clean_relaxed/HASTALIK_ADI 
+--quarantine-dir data/interim/quarantine_relaxed/HASTALIK_ADI
+
+"""
+
+
+
+
+
 from pathlib import Path
 import argparse
 import csv
@@ -93,7 +107,7 @@ def main():
     parser.add_argument("--expected-sr", type=int, default=16000)
     parser.add_argument("--min-dur", type=float, default=1.5)
     parser.add_argument("--max-dur", type=float, default=3.2)
-    parser.add_argument("--min-dbfs", type=float, default=-55.0)
+    parser.add_argument("--min-dbfs", type=float, default=-45.0)
     parser.add_argument("--max-silence-ratio", type=float, default=0.80)
     parser.add_argument("--max-clipping-ratio", type=float, default=0.01)
     args = parser.parse_args()

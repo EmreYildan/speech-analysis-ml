@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 
 Final clean segmentleri video bazlı train/test'e ayırır.
@@ -8,7 +7,7 @@ Final clean segmentleri video bazlı train/test'e ayırır.
 - Split metadata ve video summary CSV üretir.
 
 Örnek:
-python scripts/05_split_train_test_by_video_balanced.py
+python scripts/08_split_train_test_by_video_balanced.py
 """
 
 from __future__ import annotations
@@ -21,29 +20,29 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+#bunu kendi hastalık adıyla değiştirin.
 LABEL = "spasmodic_dysphonia"
 
-# Final clean klasör: duplicate + quarantine temizliğinden sonra kalan dosyalar burada olmalı.
+# Clean pool klasörü: audit, manual review ve duplicate temizliği sonrası kalan dosyalar burada olmalı.
 INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "segmented_clean_relaxed" / LABEL
 
 TRAIN_DIR = PROJECT_ROOT / "data" / "processed" / "train_set" / LABEL
 TEST_DIR = PROJECT_ROOT / "data" / "processed" / "test_set" / LABEL
 
-SPLIT_METADATA_CSV = PROJECT_ROOT / "data" / "metadata" / "split_metadata.csv"
-VIDEO_SPLIT_SUMMARY_CSV = PROJECT_ROOT / "data" / "metadata" / "video_split_summary.csv"
+SPLIT_METADATA_CSV = PROJECT_ROOT / "data" / "metadata" / f"{LABEL}_split_metadata.csv"
+VIDEO_SPLIT_SUMMARY_CSV = PROJECT_ROOT / "data" / "metadata" / f"{LABEL}_video_split_summary.csv"
 
 TEST_RATIO = 0.20
 SEED = 42
 
-# Rastgele kombinasyon deneme sayısı. 39 video gibi bir veri için yeterli.
+# Rastgele kombinasyon deneme sayısı.
 N_TRIALS = 20000
 
 
 def extract_video_id(filename: str) -> str:
-    """
-    Example:
-    7n3YS7GdQ0k_seg_001.wav -> 7n3YS7GdQ0k
-    """
+  
+    #Example: 7n3YS7GdQ0k_seg_001.wav -> 7n3YS7GdQ0k
+   
     return filename.split("_seg_")[0]
 
 
@@ -59,10 +58,9 @@ def choose_balanced_test_videos(
     seed: int,
     n_trials: int,
 ) -> set[str]:
-    """
-    Test videolarını segment sayısı hedefe yakın olacak şekilde seçer.
-    Video bazlı leakage'ı engeller.
-    """
+
+    #Test videolarını segment sayısı hedefe yakın olacak şekilde seçer. Video bazlı leakage'ı engeller.
+ 
     rng = random.Random(seed)
 
     video_ids = sorted(video_to_files.keys())
@@ -119,7 +117,7 @@ def write_split_metadata(
         for f in sorted(files):
             rows.append({
                 "filename": f.name,
-                "relative_path": str(f).replace("\\", "/"),
+                "relative_path": f"data/processed/{split_name}_set/{label}/{f.name}",
                 "video_id": extract_video_id(f.name),
                 "label": label,
                 "split": split_name,

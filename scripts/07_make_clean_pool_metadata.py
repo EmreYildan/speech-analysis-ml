@@ -1,19 +1,16 @@
-#!/usr/bin/env python3
 """
-09_make_final_clean_metadata.py
-
+ 
 Final clean klasöründeki .wav dosyalarından metadata üretir.
 
 Ne üretiyor:
-- data/metadata/final_clean_metadata.csv
+- data/metadata/clean_pool_metadata.csv
 - Her satır 1 segmenttir.
 - Duplicate ve quarantine temizliğinden sonra klasörde ne kaldıysa onu final kabul eder.
 
 Örnek:
-python scripts/09_make_final_clean_metadata.py ^
-  --input data/interim/segmented_clean_relaxed/spasmodic_dysphonia ^
-  --output data/metadata/final_clean_metadata.csv ^
-  --label spasmodic_dysphonia
+python scripts/07_make_clean_pool_metadata.py 
+--input data/interim/segmented_clean_relaxed/spasmodic_dysphonia 
+--label spasmodic_dysphonia
 """
 
 from __future__ import annotations
@@ -44,10 +41,10 @@ def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
 
 
 def read_wav_info(path: Path) -> dict:
-    """
-    WAV dosyasından temel audio bilgilerini çıkarır.
-    16-bit PCM wav için en sağlıklı çalışır.
-    """
+ 
+    #WAV dosyasından temel audio bilgilerini çıkarır.
+    #16-bit PCM wav için en sağlıklı çalışır.
+  
     with wave.open(str(path), "rb") as wf:
         sample_rate = wf.getframerate()
         channels = wf.getnchannels()
@@ -74,7 +71,7 @@ def read_wav_info(path: Path) -> dict:
         rms = float(np.sqrt(np.mean(audio_norm ** 2))) if audio_norm.size else 0.0
         rms_dbfs = 20 * math.log10(rms + 1e-12)
 
-        # 07 scriptindeki mantığa yakın: -45 dBFS altını sessizlik gibi say
+        # 05 scriptindeki mantığa yakın: -45 dBFS altını sessizlik gibi say
         silence_threshold = 10 ** (-45 / 20)
         silence_ratio = float(np.mean(np.abs(audio_norm) < silence_threshold)) if audio_norm.size else 1.0
 
@@ -101,15 +98,18 @@ def parse_video_and_segment(filename_stem: str) -> tuple[str, str]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Final clean metadata CSV üretir.")
+    parser = argparse.ArgumentParser(description="clean pool metadata CSV üretir.")
     parser.add_argument("--input", required=True, type=Path, help="Final clean .wav klasörü.")
-    parser.add_argument("--output", required=True, type=Path, help="Çıkacak metadata CSV dosyası.")
+    parser.add_argument("--output", required=False, type=Path, default=None, help="Çıkacak metadata CSV dosyası.")
     parser.add_argument("--label", default="spasmodic_dysphonia", help="Sınıf etiketi.")
     parser.add_argument("--pattern", default="*.wav", help="Dosya paterni. Varsayılan: *.wav")
     args = parser.parse_args()
 
     input_dir: Path = args.input
-    output_path: Path = args.output
+    if args.output is None:
+        output_path = Path("data") / "metadata" / f"{args.label}_clean_pool_metadata.csv"
+    else:
+        output_path = args.output
 
     if not input_dir.exists():
         raise FileNotFoundError(f"Input klasörü bulunamadı: {input_dir}")
@@ -129,8 +129,7 @@ def main() -> None:
             "video_id": video_id,
             "segment_index": segment_index,
             "label": args.label,
-            "clean_status": "final_clean",
-            "split": "",  # train/test split sonrası doldurulabilir
+            "clean_status": "clean_pool",
             "sha256": file_hash,
             **audio_info,
         })
@@ -144,7 +143,6 @@ def main() -> None:
         "segment_index",
         "label",
         "clean_status",
-        "split",
         "sha256",
         "sample_rate",
         "channels",
@@ -164,7 +162,7 @@ def main() -> None:
     unique_videos = sorted({row["video_id"] for row in rows})
 
     print(f"[OK] Metadata saved: {output_path}")
-    print(f"[INFO] Final clean segments: {len(rows)}")
+    print(f"[INFO] Clean pool segments: {len(rows)}")
     print(f"[INFO] Unique videos: {len(unique_videos)}")
     print(f"[INFO] Label: {args.label}")
 

@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 """
-08_remove_exact_duplicate_segments.py
+
 
 Exact duplicate .wav temizliği yapar:
 - Dosyaları SHA256 hash ile karşılaştırır.
@@ -10,13 +9,13 @@ Exact duplicate .wav temizliği yapar:
 - Varsayılan olarak dry-run çalışır; gerçek taşıma için --move ver.
 
 Örnek:
-python scripts/08_remove_exact_duplicate_segments.py ^
+python scripts/06_remove_exact_duplicate_segments.py ^
   --input data/interim/segmented_clean_relaxed/spasmodic_dysphonia ^
   --duplicates-dir data/interim/duplicates_removed/spasmodic_dysphonia ^
   --report data/metadata/duplicate_report.csv
 
 Gerçekten taşımak için:
-python scripts/08_remove_exact_duplicate_segments.py ^
+python scripts/06_remove_exact_duplicate_segments.py ^
   --input data/interim/segmented_clean_relaxed/spasmodic_dysphonia ^
   --duplicates-dir data/interim/duplicates_removed/spasmodic_dysphonia ^
   --report data/metadata/duplicate_report.csv ^
