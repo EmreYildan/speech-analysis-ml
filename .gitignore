@@ -65,3 +65,7 @@ Thumbs.db
 !data/processed/test_set/member_c/.gitkeep
 !data/processed/test_set/member_d/.gitkeep
 !data/processed/test_set/member_e/.gitkeep
+
+!data/processed/dataset.csv
+!data/processed/train.csv
+!data/processed/test.csv

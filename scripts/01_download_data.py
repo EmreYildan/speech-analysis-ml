@@ -6,8 +6,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 # Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
 
-URL_FILE = PROJECT_ROOT / "data" / "metadata" / "stuttering_urls.txt"
-OUTPUT_DIR = PROJECT_ROOT / "data" / "raw" / "stuttering"
+URL_FILE = PROJECT_ROOT / "data" / "metadata" / "dysarthria_urls.txt"
+OUTPUT_DIR = PROJECT_ROOT / "data" / "raw" / "dysarthria"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

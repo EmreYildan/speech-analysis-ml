@@ -5,8 +5,8 @@ from pydub.silence import detect_nonsilent
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 # Burda Dosya dizini kendinize göre ayarlanacaktır örnek stuttering yerine kendi hastalığınızın adını yazabilirsiniz
 
-INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "wav_16k" / "stuttering"
-OUTPUT_DIR = PROJECT_ROOT / "data" / "interim" / "trimmed" / "stuttering"
+INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "wav_16k" / "dysarthria"
+OUTPUT_DIR = PROJECT_ROOT / "data" / "interim" / "trimmed" / "dysarthria"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
