@@ -9,7 +9,7 @@ Output:
 - data/metadata/<label>_final_dataset_metadata.csv
 
 Örnek:
-python scripts/09_merge_final_metadata_with_split.py --label spasmodic_dysphonia
+python scripts/09_merge_final_metadata_with_split.py --label normal_speech
 """
 
 from __future__ import annotations

@@ -21,7 +21,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 #bunu kendi hastalık adıyla değiştirin.
-LABEL = "spasmodic_dysphonia"
+LABEL = "normal_speech"
 
 # Clean pool klasörü: audit, manual review ve duplicate temizliği sonrası kalan dosyalar burada olmalı.
 INPUT_DIR = PROJECT_ROOT / "data" / "interim" / "segmented_clean_relaxed" / LABEL

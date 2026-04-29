@@ -9,8 +9,8 @@ Ne üretiyor:
 
 Örnek:
 python scripts/07_make_clean_pool_metadata.py 
---input data/interim/segmented_clean_relaxed/spasmodic_dysphonia 
---label spasmodic_dysphonia
+--input data/interim/segmented_clean_relaxed/normal_speech 
+--label normal_speech
 """
 
 from __future__ import annotations

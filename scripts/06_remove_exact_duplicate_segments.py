@@ -10,14 +10,14 @@ Exact duplicate .wav temizliği yapar:
 
 Örnek:
 python scripts/06_remove_exact_duplicate_segments.py ^
-  --input data/interim/segmented_clean_relaxed/spasmodic_dysphonia ^
-  --duplicates-dir data/interim/duplicates_removed/spasmodic_dysphonia ^
+  --input data/interim/segmented_clean_relaxed/normal_speech ^
+  --duplicates-dir data/interim/duplicates_removed/snormal_speech ^
   --report data/metadata/duplicate_report.csv
 
 Gerçekten taşımak için:
 python scripts/06_remove_exact_duplicate_segments.py ^
-  --input data/interim/segmented_clean_relaxed/spasmodic_dysphonia ^
-  --duplicates-dir data/interim/duplicates_removed/spasmodic_dysphonia ^
+  --input data/interim/segmented_clean_relaxed/normal_speech ^
+  --duplicates-dir data/interim/duplicates_removed/normal_speech ^
   --report data/metadata/duplicate_report.csv ^
   --move
 """
