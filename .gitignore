@@ -16,6 +16,8 @@ data/processed/
 
 # Notebook cache
 .ipynb_checkpoints/
+*.wav
+*.mp3
 
 # OS
 .DS_Store
